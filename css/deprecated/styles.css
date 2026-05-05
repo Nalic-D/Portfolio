@@ -1,0 +1,627 @@
+﻿:root {
+    /** Dark theme primary colors */
+    /*--clr-primary-a0: #2014c8;
+    --clr-primary-a10: #4d30cf;
+    --clr-primary-a20: #6a4ad6;
+    --clr-primary-a30: #8362dd;
+    --clr-primary-a40: #9a7be3;
+    --clr-primary-a50: #b095e9;
+    /** Dark theme surface colors */
+    /*--clr-surface-a0: #171717;
+    --clr-surface-a10: #2c2c2c;
+    --clr-surface-a20: #434343;
+    --clr-surface-a30: #5b5b5b;
+    --clr-surface-a40: #747474;
+    --clr-surface-a50: #8e8e8e;
+    /** Dark theme tonal surface colors */
+    /*--clr-surface-tonal-a0: #221936;
+    --clr-surface-tonal-a10: #372e4a;
+    --clr-surface-tonal-a20: #4e455e;
+    --clr-surface-tonal-a30: #655d73;
+    --clr-surface-tonal-a40: #7d7689;
+    --clr-surface-tonal-a50: #958fa0;
+
+/** Base colors */
+--clr-dark-a0: #000000;
+--clr-light-a0: #ffffff;
+
+/** Theme primary colors */
+--clr-primary-a0: #5e3efa;
+--clr-primary-a10: #7853fc;
+--clr-primary-a20: #8d69fd;
+--clr-primary-a30: #a17dfe;
+--clr-primary-a40: #b392ff;
+--clr-primary-a50: #c3a8ff;
+
+/** Theme surface colors */
+--clr-surface-a0: #0a0414;
+--clr-surface-a10: #222029;
+--clr-surface-a20: #3a3740;
+--clr-surface-a30: #535058;
+--clr-surface-a40: #6d6b72;
+--clr-surface-a50: #88868c;
+
+/** Theme tonal surface colors */
+--clr-surface-tonal-a0: #1e153b;
+--clr-surface-tonal-a10: #342a4e;
+--clr-surface-tonal-a20: #4b4163;
+--clr-surface-tonal-a30: #635a77;
+--clr-surface-tonal-a40: #7b738d;
+--clr-surface-tonal-a50: #948da3;
+
+/** Success colors */
+--clr-success-a0: #22946e;
+--clr-success-a10: #47d5a6;
+--clr-success-a20: #9ae8ce;
+
+/** Warning colors */
+--clr-warning-a0: #a87a2a;
+--clr-warning-a10: #d7ac61;
+--clr-warning-a20: #ecd7b2;
+
+/** Danger colors */
+--clr-danger-a0: #9c2121;
+--clr-danger-a10: #d94a4a;
+--clr-danger-a20: #eb9e9e;
+
+/** Info colors */
+--clr-info-a0: #21498a;
+--clr-info-a10: #4077d1;
+--clr-info-a20: #92b2e5;
+
+	/* Dimensions Layout */
+    --sidebar-width: clamp(220px, 20vw, 280px); /* Largeur dynamique mais bornée */
+    --header-height: 70px;
+    --right-panel-width: 260px;
+    
+    /* Bloom Intensity (0 = no bloom, 1 = intense bloom) */
+    --bloom-intensity: 0.8;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Prend toute la hauteur de l'écran */
+    width: 100vw;
+    background: linear-gradient(var(--clr-surface-tonal-a10), var(--clr-surface-tonal-a0));
+    font-family: Bahnschrift, sans-serif;
+    overflow: hidden; /* Empêche le scroll global du body */
+    
+    /* LA CLÉ : Le body est un conteneur Flex */
+    display: flex; 
+    flex-direction: row;
+}
+
+/* --- 1. SIDEBAR (GAUCHE) --- */
+.vertical-banner {
+    width: var(--sidebar-width);
+    min-width: 220px; /* Taille minimale garantie */
+    height: 100%;
+    background: linear-gradient(var(--clr-surface-tonal-a30), var(--clr-surface-tonal-a20));
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 15px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Scroll si l'écran est petit en hauteur */
+    flex-shrink: 0; /* Empêche la sidebar de s'écraser */
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Plus moderne en rond, sinon mets 8px */
+    background: linear-gradient(135deg, var(--clr-primary-a10), var(--clr-primary-a0));
+    padding: 4px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.profile-texts {
+    background: linear-gradient(135deg, var(--clr-primary-a10), var(--clr-primary-a0));
+    border-radius: 8px;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    text-align: center; /* Plus propre centré dans la sidebar */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.profile-texts p { margin: 4px 0; }
+
+.buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espace entre les boutons */
+}
+
+/* Boutons adaptatifs */
+.skill-button {
+    display: block; /* Prend la largeur du parent */
+    width: 90%;    /* Force la largeur */
+    box-sizing: border-box;
+    padding: 12px 10px;
+    background-color: var(--clr-surface-tonal-a10);
+    color: white;
+    font-family: 'Cascadia Code', monospace;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    position: relative;
+    /* On retire le clip-path complexe pour l'instant car il coupe le texte si le bouton rétrécit trop.
+       On peut le garder si on gère bien le padding-right. */
+    clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 0 100%);
+    transition: all 0.3s;
+}
+
+.skill-button:hover {
+    transform: translateX(10px); /* Animation plus douce */
+    background-color: var(--clr-primary-a10);
+}
+
+/* État ACTIF (sélectionné) sur Desktop : comme le survol */
+.skill-button.active {
+    transform: translateX(20px); /* Décalage vers la droite */
+    background-color: var(--clr-primary-a10);
+    border-color: var(--clr-primary-a10);
+}
+/* On s'assure que la petite flèche (::after) change aussi de couleur */
+.skill-button.active::after {
+    background-color: #0056b3; 
+}
+
+/* --- 2. COLONNE PRINCIPALE (DROITE) --- */
+.layout-main-column {
+    flex: 1; /* Prend tout l'espace restant */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    min-width: 0; /* Important pour le flexbox nested */
+}
+
+/* Top Banner */
+.top-banner {
+    height: var(--header-height);
+    background: linear-gradient(90deg, var(--clr-primary-a10), var(--clr-primary-a0));
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    color: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    z-index: 900;
+    flex-shrink: 0;
+}
+
+/* Zone Content Wrapper */
+.content-wrapper {
+    flex: 1;
+    overflow-y: auto; /* C'est LA barre de scroll unique */
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column; /* Important pour mettre le footer en bas */
+    align-items: center; /* Centre la carte */
+    padding: 30px;
+    box-sizing: border-box;
+    /* On garde l'espace à droite seulement sur grand écran */
+    padding-right: calc(var(--right-panel-width) + 30px); 
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+.main-page-wrapper {
+    width: 100%;
+    max-width: 900px;
+    flex: 0 0 auto; /* Ne pas compresser */
+    margin-bottom: 20px; /* Espace avant le footer */
+}
+
+.main-page {
+    /* RESET du scroll interne : la carte doit grandir */
+    height: auto !important; 
+    overflow: visible !important;
+    
+    background-color: var(--clr-surface-tonal-a20);
+    border: 3px solid var(--clr-primary-a20);
+    border-radius: 8px;
+    padding: 30px;
+    color: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    
+    /* Animations */
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* --- GRILLE DE COMPETENCES (FLIP CARDS) --- */
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap; /* Permet le retour à la ligne */
+    justify-content: center; /* CENTRE les éléments (même s'il en reste 2 sur la ligne) */
+    gap: 20px; /* Espace entre les cartes */
+    margin-top: 30px;
+    perspective: 1000px; /* Nécessaire pour l'effet 3D */
+}
+
+/* Le conteneur de la carte (La scène) */
+.skill-card-scene {
+    background-color: transparent;
+    /* Taille de base (Desktop) */
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+}
+
+/* Le conteneur qui tourne */
+.skill-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d; /* Indispensable pour la 3D */
+}
+
+/* La classe ajoutée par JS pour retourner la carte */
+.skill-card.flipped {
+    transform: rotateY(180deg);
+}
+
+/* Les deux faces de la carte (Face et Pile) */
+.skill-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Cache le dos de la face */
+    backface-visibility: hidden;
+    border-radius: 15px; /* Bordures arrondies */
+    border: 3px solid var(--clr-primary-a20); /* Ta couleur de bordure thème */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+/* Effet survol : on éclaircit la bordure */
+.skill-card-scene:hover .skill-face {
+    border-color: var(--clr-primary-a40);
+    box-shadow: 0 0 10px var(--clr-primary-a10);
+}
+
+/* --- FACE AVANT (LOGO) --- */
+.skill-front {
+    background-color: var(--clr-surface-tonal-a10);
+}
+
+.skill-front img {
+    width: 70%;  /* Le logo prend 70% de la boite */
+    height: 70%;
+    object-fit: contain;
+}
+
+/* --- FACE ARRIÈRE (TEXTE) --- */
+.skill-back {
+    background-color: var(--clr-surface-tonal-a0); /* Fond un peu plus sombre pour lire */
+    color: white;
+    transform: rotateY(180deg); /* Elle est déjà retournée au départ */
+    padding: 10px;
+    font-size: 13px;
+    flex-direction: column;
+}
+
+.skill-back strong {
+    color: var(--clr-primary-a40);
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 600px) {
+    .skill-card-scene {
+        /* Calcul pour en mettre 2 par ligne minimum avec l'espace (gap) */
+        /* (100% de l'espace - 20px de gap) divisé par 2 */
+        width: calc(50% - 20px); 
+        height: 140px; /* Un peu plus haut sur mobile pour le texte */
+    }
+}
+
+/* Partie projet */
+.section-title {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 30px 0;
+    color: white;
+    font-family: 'Cascadia Code';
+}
+
+.section-title::before,
+.section-title::after {
+    content: "";
+    flex: 1;
+    border-bottom: 2px solid var(--clr-primary-a20);
+}
+
+.section-title span {
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.project-card {
+    background: var(--clr-surface-tonal-a10);
+    border: 2px solid var(--clr-primary-a20);
+    border-radius: 8px;
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+/* Hover stylé */
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* Tablette */
+@media (max-width: 900px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Le footer suit naturellement le contenu maintenant */
+.main-page-footer {
+    width: 100%;
+    max-width: 900px;
+    padding: 20px 0;
+    margin-top: auto; /* Pousse le footer en bas si peu de contenu */
+    text-align: center;
+    color: var(--clr-surface-tonal-a50);
+}
+
+.main-page.slide-out { transform: translateX(-50px); opacity: 0; }
+.main-page.slide-in { transform: translateX(0); opacity: 1; }
+
+/* Animation de fondu pour le titre */
+.page-title {
+    transition: opacity 0.3s ease;
+    position: relative;
+    z-index: 1;
+    
+    /* Bloom effect - text-shadow multiple pour l'effet de luminosité */
+    text-shadow:
+        0 0 calc(10px * var(--bloom-intensity)) rgba(32, 20, 200, 0.8),
+        0 0 calc(20px * var(--bloom-intensity)) rgba(77, 48, 207, 0.6),
+        0 0 calc(30px * var(--bloom-intensity)) rgba(106, 74, 214, 0.4),
+        0 0 calc(40px * var(--bloom-intensity)) rgba(163, 114, 224, 0.2);
+}
+
+.page-title.fade-out { opacity: 0; }
+.page-title.fade-in { opacity: 1; }
+
+/* --- ZONE 3 : PANNEAU DROIT & LANGUETTE --- */
+
+.right-page-wrapper {
+    position: fixed;
+    right: 20px;
+    top: calc(var(--header-height) + 20px);
+    bottom: 20px;
+    width: var(--right-panel-width);
+    z-index: 1100;
+    transition: transform 0.3s ease-in-out; /* Animation fluide du tiroir */
+}
+
+.right-page {
+    background-color: var(--clr-surface-tonal-a20);
+    border: 3px solid var(--clr-primary-a20);
+    border-radius: 8px;
+    height: 100%;
+    padding: 20px;
+    color: white;
+    box-sizing: border-box;
+    overflow-y: auto;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+}
+
+/* Style de la languette (cachée par défaut sur PC) */
+.panel-toggle-btn {
+    display: none; /* Invisible sur grand écran */
+    position: absolute;
+    left: -40px; /* Sort du panneau vers la gauche */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 60px;
+    background-color: var(--clr-primary-a20);
+    border: none;
+    border-radius: 10px 0 0 10px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: -2px 2px 5px rgba(0,0,0,0.2);
+    align-items: center;
+    justify-content: center;
+}
+
+.panel-toggle-btn:hover {
+    background-color: var(--clr-primary-a10);
+}
+
+/* --- RESPONSIVE (Tablettes & Mobiles) --- */
+
+@media (max-width: 1024px) {
+    /* Ajustement du wrapper principal */
+    .content-wrapper {
+        padding-right: 30px; /* On récupère l'espace du panneau droit */
+    }
+
+    /* Le panneau droit devient un tiroir caché */
+    .right-page-wrapper {
+        right: 0;
+        top: var(--header-height); /* Colle sous le header */
+        bottom: 0;
+        width: 280px; /* Largeur fixe confortable sur mobile */
+        transform: translateX(100%); /* CACHÉ HORS ÉCRAN (vers la droite) */
+        border-left: none;
+    }
+
+    .right-page {
+        border-radius: 0; /* Plus carré sur le côté */
+        border-right: none;
+        border-top: none;
+        border-bottom: none;
+    }
+
+    /* On affiche la languette */
+    .panel-toggle-btn {
+        display: flex;
+    }
+
+    /* Classe ajoutée par JS quand on clique */
+    .right-page-wrapper.open {
+        transform: translateX(0); /* On le ramène à sa place */
+        box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+    }
+}
+
+/* --- MOBILE (Smartphone) --- */
+@media (max-width: 768px) {
+    /* 1. On change la direction du Flex global : Haut vers Bas */
+    body {
+        flex-direction: column;
+        overflow-y: auto; /* On rend le scroll naturel à la page entière */
+    }
+
+    /* 2. La Sidebar devient un Header en haut de page */
+    .vertical-banner {
+        width: 100%;      /* Prend toute la largeur */
+        height: auto;     /* Hauteur automatique selon le contenu */
+        min-width: 0;     /* Reset */
+        
+        /* On aligne le contenu de la bannière à l'horizontale */
+        flex-direction: row; 
+        flex-wrap: wrap;  /* Permet aux éléments de passer à la ligne si nécessaire */
+        justify-content: center; /* Centre les éléments */
+        align-items: center;
+        
+        padding: 10px;
+        position: relative; /* Reste dans le flux normal */
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Petite ombre vers le bas */
+    }
+
+    /* Ajustement interne de la sidebar pour l'affichage horizontal */
+    .profile-container {
+        flex-direction: row;
+        width: auto;
+        margin-bottom: 10px; /* Un peu d'espace avant les boutons */
+    }
+
+    .profile-pic {
+        width: 60px;
+        height: 60px;
+        margin: 0 15px 0 0;
+        margin-bottom: 0;
+    }
+
+    .profile-texts {
+        /* On peut garder le texte ou le cacher selon tes gouts. 
+           Ici je le garde mais j'enlève le fond pour que ça fasse plus propre */
+        background: none; 
+        box-shadow: none;
+        width: auto;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+    }
+
+    /* Les boutons s'alignent horizontalement */
+    .buttons {
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap; /* Important si les boutons sont trop larges */
+    }
+
+    .skill-button {
+        width: auto; /* Le bouton prend la taille de son texte */
+        padding: 8px 20px;
+        margin: 0;
+        clip-path: none; /* On enlève la forme complexe pour simplifier sur mobile */
+        border-radius: 4px;
+        flex-grow: 1; /* Les boutons se partagent l'espace */
+        max-width: 150px;
+    }
+
+    .skill-button:hover,
+    .skill-button.active {
+        transform: translateY(2px); /* Léger déplacement vers le BAS (profondeur) */
+        box-shadow: inset 0 3px 5px rgba(0,0,0,0.3); /* Ombre intérieure pour l'effet "appuyé" */
+        background-color: var(--clr-primary-a10);
+        /* On annule le décalage horizontal du desktop */
+        margin-left: 0; 
+    }
+
+    /* 3. La colonne principale suit en dessous */
+    .layout-main-column {
+        width: 100%;
+        height: auto;
+        overflow: visible; /* Plus de scroll interne, c'est le body qui scroll */
+        flex: none; /* Ne cherche pas à remplir, suit juste le flux */
+    }
+    
+    .top-banner {
+        padding: 0 15px; /* Marges réduites */
+        height: 50px;    /* Banner plus fine sur mobile */
+    }
+
+    .content-wrapper {
+        padding: 15px;
+        overflow: visible; /* Important */
+        display: block; /* Enlève le centrage flex vertical */
+        height: auto;
+    }
+    
+    .main-page-wrapper {
+        max-width: 100%;
+    }
+
+    /* 4. Gestion du panneau droit (Tiroir) */
+    .right-page-wrapper {
+        top: 60px; /* S'ajuste sous le header s'il est ouvert */
+        height: calc(100% - 60px);
+        z-index: 2000; /* Passe au dessus de tout */
+    }
+}

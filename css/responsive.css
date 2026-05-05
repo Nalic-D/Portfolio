@@ -1,0 +1,165 @@
+/* --- RESPONSIVE TABLET --- */
+
+/* Cartes de compétences sur mobile */
+@media (max-width: 600px) {
+    .skill-card-scene {
+        width: calc(50% - 20px);
+        height: 140px;
+    }
+}
+
+/* Grille de projets sur tablette */
+@media (max-width: 900px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Grille de projets sur petit écran */
+@media (max-width: 600px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- RESPONSIVE MEDIUM (Tablettes) --- */
+
+@media (max-width: 1024px) {
+    /* Récupère l'espace du panneau droit */
+    .content-wrapper {
+        padding-right: 30px;
+    }
+
+    /* Le panneau droit devient un tiroir caché */
+    .right-page-wrapper {
+        right: 0;
+        top: var(--header-height);
+        bottom: 0;
+        width: 280px;
+        transform: translateX(100%);
+        border-left: none;
+    }
+
+    .right-page {
+        border-radius: 0;
+        border-right: none;
+        border-top: none;
+        border-bottom: none;
+    }
+
+    /* On affiche la languette */
+    .panel-toggle-btn {
+        display: flex;
+    }
+
+    /* État ouvert du panneau droit */
+    .right-page-wrapper.open {
+        transform: translateX(0);
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+    }
+}
+
+/* --- RESPONSIVE MOBILE (Smartphone) --- */
+
+@media (max-width: 768px) {
+    /* Change la direction du Flex global */
+    body {
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    /* Sidebar devient un header en haut de page */
+    .vertical-banner {
+        width: 100%;
+        height: auto;
+        min-width: 0;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        position: relative;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Ajustement du conteneur profil pour mobile */
+    .profile-container {
+        flex-direction: row;
+        width: auto;
+        margin-bottom: 10px;
+    }
+
+    .profile-pic {
+        width: 60px;
+        height: 60px;
+        margin: 0 15px 0 0;
+        margin-bottom: 0;
+    }
+
+    .profile-texts {
+        background: none;
+        box-shadow: none;
+        width: auto;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+    }
+
+    /* Boutons en disposition horizontale */
+    .buttons {
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .skill-button {
+        width: auto;
+        padding: 8px 20px;
+        margin: 0;
+        clip-path: none;
+        border-radius: 4px;
+        flex-grow: 1;
+        max-width: 150px;
+    }
+
+    .skill-button:hover,
+    .skill-button.active {
+        transform: translateY(2px);
+        box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.3);
+        background-color: rgba(var(--clr-primary-a10-rgb), 0.6);
+        margin-left: 0;
+    }
+
+    /* Colonne principale suit en dessous */
+    .layout-main-column {
+        width: 100%;
+        height: auto;
+        overflow: visible;
+        flex: none;
+    }
+
+    .top-banner {
+        padding: 0 15px;
+        height: 50px;
+    }
+
+    .content-wrapper {
+        padding: 15px;
+        overflow: visible;
+        display: block;
+        height: auto;
+    }
+
+    .main-page-wrapper {
+        max-width: 100%;
+    }
+
+    /* Gestion du panneau droit (Tiroir) */
+    .right-page-wrapper {
+        top: 60px;
+        height: calc(100% - 60px);
+        z-index: 2000;
+    }
+}
