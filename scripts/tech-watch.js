@@ -29,7 +29,7 @@ function loadTechWatchContent() {
     const container = document.getElementById('tech-watch-content');
     if (!container) return;
 
-    fetch('data/Veille technologique.md')
+    fetch('data/vt-raytracing.md')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Fichier non trouvé');
