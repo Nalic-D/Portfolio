@@ -80,7 +80,7 @@
 /* Dimensions Layout */
 --sidebar-width: clamp(220px, 20vw, 280px);
 --header-height: 70px;
---right-panel-width: 260px;
+--right-panel-width: clamp(320px, 32vw, 450px);
 
 /* Bloom Intensity (0 = no bloom, 1 = intense bloom) */
 --bloom-intensity: 0.8;

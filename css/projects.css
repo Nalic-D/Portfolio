@@ -30,6 +30,7 @@
 
 /* Carte de projet */
 .project-card {
+    position: relative;
     background: rgba(32, 20, 200, 0.12);
     backdrop-filter: blur(8px) saturate(1.1);
     -webkit-backdrop-filter: blur(8px) saturate(1.1);
@@ -40,8 +41,126 @@
     cursor: pointer;
 }
 
+.project-card::after {
+    content: "";
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    right: 14px;
+    bottom: 14px;
+    background: rgba(var(--clr-primary-a10-rgb), 0.65);
+    clip-path: polygon(100% 0, 0 100%, 100% 100%);
+    opacity: 0.8;
+    pointer-events: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
 /* Hover stylé */
 .project-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
+
+.project-card:hover::after {
+    transform: translateY(-1px);
+    opacity: 1;
+}
+
+/* --- SECTION VEILLE TECHNOLOGIQUE --- */
+
+.tech-watch-container {
+    background: rgba(32, 20, 200, 0.08);
+    backdrop-filter: blur(8px) saturate(1.1);
+    -webkit-backdrop-filter: blur(8px) saturate(1.1);
+    border: 2px solid rgba(var(--clr-primary-a10-rgb), 0.3);
+    border-radius: 8px;
+    padding: 25px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.8;
+}
+
+.tech-watch-text {
+    font-size: 1em;
+}
+
+.tech-watch-text h2 {
+    margin: 25px 0 15px 0;
+    color: rgba(var(--clr-primary-a10-rgb), 1);
+    font-weight: 700;
+    font-size: 1.3em;
+    border-bottom: 2px solid rgba(var(--clr-primary-a10-rgb), 0.4);
+    padding-bottom: 10px;
+}
+
+.tech-watch-text h3 {
+    margin: 20px 0 12px 0;
+    color: rgba(var(--clr-primary-a10-rgb), 0.95);
+    font-weight: 650;
+    font-size: 1.15em;
+}
+
+.tech-watch-text h4 {
+    margin: 18px 0 10px 0;
+    color: rgba(var(--clr-primary-a10-rgb), 0.9);
+    font-weight: 600;
+    font-size: 1.05em;
+}
+
+.tech-watch-text p {
+    margin: 12px 0;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+}
+
+.tech-watch-text strong {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+}
+
+.tech-watch-text em {
+    color: rgba(255, 255, 255, 0.9);
+    font-style: italic;
+}
+
+.tech-watch-text ul {
+    margin: 12px 0 12px 25px;
+    padding: 0;
+}
+
+.tech-watch-text li {
+    margin: 8px 0;
+    list-style-type: disc;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.tech-watch-error {
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(200, 50, 50, 0.15);
+    border: 2px solid rgba(200, 50, 50, 0.4);
+    border-radius: 8px;
+    color: rgba(255, 200, 200, 0.9);
+}
+
+.tech-watch-error .error-icon {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.tech-watch-error h4 {
+    margin: 10px 0;
+    color: rgba(255, 150, 150, 0.95);
+}
+
+.tech-watch-error p {
+    margin: 8px 0;
+    color: rgba(255, 200, 200, 0.8);
+}
+
+.tech-watch-error code {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Cascadia Code';
+}
+

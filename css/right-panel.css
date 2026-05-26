@@ -22,6 +22,16 @@
     box-sizing: border-box;
     overflow-y: auto;
     box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.right-panel-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 /* Languette de toggle (cachée par défaut sur PC) */
@@ -49,4 +59,72 @@
 
 .panel-toggle-btn:hover {
     background-color: rgba(var(--clr-primary-a10-rgb), 0.9);
+}
+
+/* --- ANIMATIONS FADE POUR LE CONTENU DU VOLET --- */
+
+.right-panel-content {
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in-out;
+}
+
+/* Fade Out - Disparition progressive */
+.right-panel-content.fade-out {
+    animation: fadeOut 0.3s ease-in-out forwards;
+}
+
+/* Fade In - Apparition progressive */
+.right-panel-content.fade-in {
+    animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Styles pour le contenu du volet droit */
+.right-panel-content h4 {
+    margin: 15px 0 10px 0;
+    font-size: 1.1em;
+    color: rgba(var(--clr-primary-a10-rgb), 1);
+    font-weight: 600;
+    border-bottom: 1px solid rgba(var(--clr-primary-a10-rgb), 0.3);
+    padding-bottom: 8px;
+}
+
+.right-panel-content p {
+    margin: 8px 0;
+    line-height: 1.6;
+    font-size: 0.95em;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.right-panel-content div {
+    font-size: 0.95em;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.right-panel-content strong {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+}
+
+/* Listes dans le volet */
+.right-panel-content div br {
+    content: '';
 }

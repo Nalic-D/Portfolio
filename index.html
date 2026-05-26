@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="utf-8" />
@@ -26,7 +26,7 @@
     <body>
         <aside class="vertical-banner">
             <div class="profile-container">
-                <img class="profile-pic" src="img/300px-Crying_Cat_screaming.jpg" alt="Profile">
+                <img class="profile-pic" src="img/pfp.jpg" alt="Profile">
                 <div class="profile-texts">
                     <!-- content -->
                 </div>
@@ -42,8 +42,8 @@
                 <a href="#" class="button-link skill-button" data-page="projets">
                     <strong>Projets</strong>
                 </a>
-                <a href="#" class="button-link skill-button" data-page="liens">
-                    <strong>Liens</strong>
+                <a href="#" class="button-link skill-button" data-page="contact">
+                    <strong>Contact</strong>
                 </a>
                 <a href="#" class="button-link skill-button" data-page="cv">
                     <strong>CV</strong>
@@ -76,7 +76,9 @@
             
             <div class="right-page">
                 <h3>Infos</h3>
-                <p>Ici, tu pourras mettre des infos contextuelles, des liens, etc.</p>
+                <div class="right-panel-content">
+                    <p>Cliquez sur un projet ou une compétence pour obtenir des infos supplémentaires.</p>
+                </div>
             </div>
         </aside>
         
@@ -84,6 +86,30 @@
         <script src="scripts/profile.js"></script>
         <script src="scripts/main_slider.js"></script>
         <script src="scripts/skills.js"></script>
+        <script src="scripts/tech-watch.js"></script>
         <script src="scripts/mobile-panel.js"></script>
+        <script>
+            // Gérer le chargement du PDF
+            document.addEventListener('DOMContentLoaded', function() {
+                const pdfObserver = new MutationObserver(function() {
+                    const pdfViewer = document.getElementById('pdf-viewer');
+                    if (pdfViewer) {
+                        pdfViewer.addEventListener('error', function() {
+                            const container = pdfViewer.closest('.pdf-container');
+                            if (container) {
+                                container.classList.add('pdf-not-found');
+                                container.innerHTML = '<p>Le fichier CV.pdf n\'est pas disponible. Cliquez sur le bouton ci-dessous pour le télécharger directement.</p>';
+                            }
+                        });
+                        pdfObserver.disconnect();
+                    }
+                });
+                
+                pdfObserver.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+            });
+        </script>
     </body>
 </html>

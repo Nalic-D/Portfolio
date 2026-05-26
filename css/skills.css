@@ -27,6 +27,26 @@
     transform-style: preserve-3d;
 }
 
+.skill-card::after {
+    content: "";
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    right: 12px;
+    bottom: 12px;
+    background: rgba(var(--clr-primary-a10-rgb), 0.65);
+    clip-path: polygon(100% 0, 0 100%, 100% 100%);
+    opacity: 0.8;
+    pointer-events: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    z-index: 2;
+}
+
+.skill-card-scene:hover .skill-card::after {
+    transform: translateY(-1px);
+    opacity: 1;
+}
+
 /* La classe ajoutée par JS pour retourner la carte */
 .skill-card.flipped {
     transform: rotateY(180deg);
